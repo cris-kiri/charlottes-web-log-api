@@ -15,8 +15,8 @@ You won't need the front-end for the purposes of this challenge.
 
 ### 0. Installation and migrations
 
-- [ ] Clone this repo and `cd` into the new directory
-- [ ] Install packages, run migrations and seeds, and start the dev server with `npm run dev`
+- [x] Clone this repo and `cd` into the new directory
+- [x] Install packages, run migrations and seeds, and start the dev server with `npm run dev`
   <details style="padding-left: 2em">
     <summary>Tip</summary>
 
@@ -30,7 +30,7 @@ You won't need the front-end for the purposes of this challenge.
     ```
   </details>
 
-- [ ] Open Insomnia, Thunder Client, or the client of your choice for testing API calls
+- [x] Open Insomnia, Thunder Client, or the client of your choice for testing API calls
 
 ---
 
