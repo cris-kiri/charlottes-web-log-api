@@ -1,4 +1,4 @@
-exports.seed = (knex) => {
+export function seed(knex) {
   return knex('Posts').insert([
     {
       id: 126,

@@ -1,4 +1,4 @@
-exports.seed = (knex) => {
+export function seed(knex) {
   // Deletes ALL existing entries
   return knex('Comments')
     .del()
