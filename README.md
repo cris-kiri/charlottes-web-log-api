@@ -187,7 +187,7 @@ The database migrations and seeds have already been written for you so you don't
 
 ### 3. Getting comments
 
-- [ ] Get a list of comments for a specific post
+- [x] Get a list of comments for a specific post
   <details style="padding-left: 2em">
     <summary>More about getting comments</summary>
     
@@ -216,7 +216,7 @@ The database migrations and seeds have already been written for you so you don't
 
 ### 4. Adding, updating, and deleting comments
 
-- [ ] Add a new comment to a specific post
+- [x] Add a new comment to a specific post
   <details style="padding-left: 2em">
     <summary>More about adding comments</summary>
     
@@ -243,7 +243,7 @@ The database migrations and seeds have already been written for you so you don't
     ```
   </details>
 
-- [ ] Update an existing comment
+- [x] Update an existing comment
   <details style="padding-left: 2em">
     <summary>More about updating comments</summary>
     
@@ -270,7 +270,7 @@ The database migrations and seeds have already been written for you so you don't
     ```
   </details>
 
-- [ ] Delete an existing comment
+- [x] Delete an existing comment
   <details style="padding-left: 2em">
     <summary>More about deleting comments</summary>
     

@@ -1,5 +1,6 @@
 import connection from './connection.ts'
 import { Post, PostData } from '../../models/post.ts'
+import { Comment, CommentData } from '../../models/comment'
 
 export function getAllPosts() {
   return connection('Posts').select(
@@ -29,4 +30,37 @@ export function updatePost(post: Post): Promise<Post[]> {
 
 export function deletePost(id: number): Promise<Post[]> {
   return connection('Posts').delete().where('id', id)
+}
+
+export function getCommentsById(id: number): Promise<Comment[]> {
+  return connection('Comments')
+    .join('Posts', 'Posts.id', 'Comments.post_id')
+    .select(
+      'Comments.id',
+      'Comments.post_id as postID',
+      'Comments.date_posted as datePosted',
+      'Comments.comment'
+    )
+    .where('Posts.id', id)
+}
+
+export function addCommentToPost(comment: Comment): Promise<Comment[]> {
+  return connection('Comments')
+    .insert(comment)
+    .returning([
+      'id',
+      'post_id as postID',
+      'date_posted as datePosted',
+      'comment',
+    ])
+}
+
+export function updateComment(comment: Comment): Promise<Comment[]> {
+  return connection('Comments')
+    .update({ comment: comment.comment })
+    .where('id', comment.id)
+}
+
+export function deleteComment(id: number): Promise<Comment[]> {
+  return connection('Comments').delete().where('id', id)
 }
