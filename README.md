@@ -167,7 +167,7 @@ The database migrations and seeds have already been written for you so you don't
     ```
   </details>
 
-- [ ] Delete an existing blog post
+- [x] Delete an existing blog post
   <details style="padding-left: 2em">
     <summary>More about deleting posts</summary>
     
