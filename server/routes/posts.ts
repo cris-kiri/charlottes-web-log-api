@@ -1,7 +1,7 @@
 import express from 'express'
 
 import * as db from '../db/db'
-import { Post, PostData, PostUpdate } from '../../models/post'
+import { Post } from '../../models/post'
 
 const router = express.Router()
 
@@ -14,13 +14,7 @@ router.get('/', async (req, res) => {
 
 // POST /api/v1/posts
 router.post('/', async (req, res) => {
-  const { title, text } = req.body
-
-  const newPost = {
-    title: title,
-    text: text,
-    date_created: Date.now(),
-  }
+  const newPost = { ...req.body, date_created: Date.now() }
 
   const addedPost = await db.addPost(newPost)
 
@@ -29,12 +23,9 @@ router.post('/', async (req, res) => {
 
 // PATCH /api/v1/posts/:id
 router.patch('/:id', async (req, res) => {
-  const id = req.params.id
-  const { title, text } = req.body
   const post: Post = {
-    id: parseInt(id),
-    title: title,
-    text: text,
+    id: parseInt(req.params.id),
+    ...req.body,
     dateCreated: Date.now(),
   }
 
@@ -47,9 +38,9 @@ router.patch('/:id', async (req, res) => {
 router.delete('/:id', async (req, res) => {
   const id: number = parseInt(req.params.id)
 
-  const deletedPost = await db.deletePost(id)
+  await db.deletePost(id)
 
-  res.json(deletedPost[0])
+  res.sendStatus(200)
 })
 
 export default router
