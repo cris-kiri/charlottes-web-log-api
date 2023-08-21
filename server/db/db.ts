@@ -44,9 +44,13 @@ export function getCommentsById(id: number): Promise<Comment[]> {
     .where('Posts.id', id)
 }
 
-export function addCommentToPost(comment: Comment): Promise<Comment[]> {
+export function addCommentToPost(comment: CommentData): Promise<Comment> {
   return connection('Comments')
-    .insert(comment)
+    .insert({
+      comment: comment.comment,
+      post_id: comment.postId,
+      date_posted: Date.now(),
+    })
     .returning([
       'id',
       'post_id as postID',
@@ -55,10 +59,10 @@ export function addCommentToPost(comment: Comment): Promise<Comment[]> {
     ])
 }
 
-export function updateComment(comment: Comment): Promise<Comment[]> {
+export function updateComment(id: number, comment: string): Promise<Comment[]> {
   return connection('Comments')
-    .update({ comment: comment.comment })
-    .where('id', comment.id)
+    .update({ id: id, comment: comment, date_posted: Date.now() })
+    .where('id', id)
 }
 
 export function deleteComment(id: number): Promise<Comment[]> {

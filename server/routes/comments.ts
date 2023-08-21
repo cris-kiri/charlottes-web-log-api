@@ -1,7 +1,7 @@
 import express from 'express'
 
 import * as db from '../db/db'
-import { Comment, CommentData } from '../../models/comment'
+import { CommentData } from '../../models/comment'
 
 // eslint-disable-next-line no-unused-vars
 
@@ -13,21 +13,14 @@ router.get('/:postID/comments', async (req, res) => {
   const postsWithComments = await db.getCommentsById(postID)
 
   res.json(postsWithComments)
-
-  // const comments = postsWithComments.map((post) => {
-  //   return post.comment
-  // })
-
-  // res.json(comments)
 })
 
 // POST /api/v1/comments/:postID/comments
 router.post('/:postID/comments', async (req, res) => {
   const postID = Number(req.params.postID)
-  const addedComment = await db.addCommentToPost({
+  const addedComment: CommentData = await db.addCommentToPost({
     comment: req.body.comment,
-    date_posted: Date.now(),
-    post_id: postID,
+    postId: postID,
   })
 
   res.json(addedComment)
@@ -36,11 +29,13 @@ router.post('/:postID/comments', async (req, res) => {
 // PATCH /api/v1/comments/:commentID
 router.patch('/:commentID', async (req, res) => {
   const commentID = Number(req.params.commentID)
-  await db.updateComment({
-    id: commentID,
-    comment: req.body.comment,
-    date_created: Date.now(),
-  })
+
+  try {
+    await db.updateComment(commentID, req.body.comment)
+  } catch (err: unknown) {
+    if (err instanceof Error) console.log(err.message)
+    else throw Error("Can't handle this error!")
+  }
 
   res.sendStatus(200)
 })
@@ -51,8 +46,9 @@ router.delete('/:commentID', async (req, res) => {
 
   try {
     await db.deleteComment(id)
-  } catch (err) {
-    console.log(err.message)
+  } catch (err: unknown) {
+    if (err instanceof Error) console.log(err.message)
+    else throw Error("Can't handle this error!")
   }
 
   res.sendStatus(200)
