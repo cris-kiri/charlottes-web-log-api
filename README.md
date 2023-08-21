@@ -82,7 +82,7 @@ The database migrations and seeds have already been written for you so you don't
 
 ### 1. Getting posts
 
-- [ ] Get a list of blog posts
+- [x] Get a list of blog posts
   <details style="padding-left: 2em">
     <summary>More about getting posts</summary>
     
@@ -107,7 +107,7 @@ The database migrations and seeds have already been written for you so you don't
 
 ### 2. Adding, updating, and deleting posts
 
-- [ ] Add a new blog post
+- [x] Add a new blog post
   <details style="padding-left: 2em">
     <summary>More about adding a post</summary>
     
@@ -139,7 +139,7 @@ The database migrations and seeds have already been written for you so you don't
     Alternately, upon a successful insertion, we could reconstruct the record based on the details given to the route, plus the default information returned from the database insertion.
   </details>
 
-- [ ] Update an existing blog post
+- [x] Update an existing blog post
   <details style="padding-left: 2em">
     <summary>More about updating a post</summary>
     
